@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.css'; // Import the CSS file for styling
+import { TaskProvider } from './context/TaskContext';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 
-function App() {
+const App: React.FC = () => {
+  const [filter, setFilter] = useState<'ALL_TASKS' | 'COMPLETED_TASKS' | 'INCOMPLETED_TASKS'>('ALL_TASKS');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TaskProvider>
+      <div className="app-container">
+        <h1>Task Management App</h1>
+        <TaskForm />
+        <div className="filter-buttons">
+          <button onClick={() => setFilter('ALL_TASKS')}>All</button>
+          <button onClick={() => setFilter('COMPLETED_TASKS')}>Completed</button>
+          <button onClick={() => setFilter('INCOMPLETED_TASKS')}>Incomplete</button>
+        </div>
+        <TaskList filter={filter} />
+      </div>
+    </TaskProvider>
   );
-}
+};
 
 export default App;
