@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-// Define the task interface
+
 export interface Task {
   id: number;
   text: string;
   completed: boolean;
 }
 
-// Create the context
+
 const TaskContext = createContext<{
   tasks: Task[];
   addTask: (text: string) => void;
@@ -15,12 +15,12 @@ const TaskContext = createContext<{
   deleteTask: (id: number) => void;
 }>({ tasks: [], addTask: () => {}, completeTask: () => {}, deleteTask: () => {} });
 
-// Define the props for the provider component
+
 interface TaskProviderProps {
   children: ReactNode;
 }
 
-// Provider component
+
 export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   const [tasks, setTasks] = useState<Task[]>(() => {
     const storedTasks = localStorage.getItem('tasks');
