@@ -53,5 +53,4 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   );
 };
 
-// Custom hook for using context
 export const useTaskContext = () => useContext(TaskContext);
